@@ -1,0 +1,85 @@
+﻿@model Uni_Movie.ViewModels.GenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="py-5">
+    <form asp-action="Create" asp-controller="Genre" method="post" class="d-flex flex-column flex-md-row justify-content-center">
+        <div class="col-12 col-md-3">
+        <input type="text" class="form-control" placeholder="Enter Genre" asp-for="@Model.genre.Title" />
+        </div>
+        <div class="col-12 col-md-3">
+        <button type="submit" class="form-control btn btn-success ">Create New Genre</button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-bordered table-striped text-center">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.genre.Title)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.genres)
+        {
+            <tr>
+                <td>
+                    <a onclick="DeleteAlert(`/Genre/Delete/${@item.Id}`)" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+
+    <script>
+        function DeleteAlert(url) {
+
+            Swal.fire({
+                title: "?Are you sure",
+                text: "!You won't be able to revert this",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "!Yes, delete it"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (value) {
+                            if (value.success) {
+                                Swal.fire({
+                                    title: "!Deleted",
+                                    text: "!Your file has been deleted",
+                                    icon: "success"
+                                });
+                                setTimeout(function () {
+                                    location.reload()
+                                }, 1500);
+                            }
+                        }
+                    })
+
+                }
+            });
+        }
+    </script>
+
+	}
+
+
