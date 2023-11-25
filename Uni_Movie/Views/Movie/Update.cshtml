@@ -1,0 +1,90 @@
+﻿@model Uni_Movie.ViewModels.MovieUpdateViewModel
+
+<div class="container">
+
+    <form  method="post" enctype="multipart/form-data">
+        <div class="row">
+            <input type="hidden" asp-for="movie.Id"/>
+            <div class="col-12 col-md-6 py-2">
+                <input asp-for="movie.Title" type="text" class="form-control" placeholder="Enter title">
+                <span asp-validation-for="movie.Title"></span>
+            </div>
+            <div class="col-12 col-md-6 py-2">
+                <input asp-for="movie.Director" type="text" class="form-control" placeholder="Enter director">
+                <span asp-validation-for="movie.Director"></span>
+            </div>
+            <div class=" col-12 col-md-6 py-2">
+                <input asp-for="movie.Year" type="datetime-local" min="1890-01-01T00:00" max="2100-12-31T23:59" class="form-control" placeholder="Enter year">
+            </div>
+            <div class=" col-12 col-md-6 py-2">
+                <select class="text-bg-danger" asp-for="@Model.movie.genreId">
+                    <option disabled>---- Select Genre ----</option>
+                    @foreach (var item in Model.genreList)
+                    {
+                        if (item.Id == Model.movie.genreId)
+                        {
+                            <option value="@item.Id" class="text-white" selected>@item.Title</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id" class="text-white">@item.Title</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="movie.genreId"></span>
+            </div>
+            <div class=" col-12 col-md-6 py-2">
+                <input asp-for="movie.Rate" type="text" class="form-control" placeholder="Enter IMDB">
+                <span asp-validation-for="movie.Rate"></span>
+            </div>
+
+            <div>
+                <div class="col-md-6" style="margin-top:20px">
+                    <div class="form-group">
+                        <div id="divimages">
+                            <img src=@($"data:image/jpeg;base64,{Convert.ToBase64String(Model.movie.Image)}") id="imgpreview" width="150" height="120" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-12 col-md-6 py-2 custom-file">
+                <input asp-for="movie.MovieImage" id="file1" type="file" class="form-control"  placeholder="Enter image">
+                <span asp-validation-for="movie.MovieImage"></span>
+            </div>
+            <div class="col-12 col-md-6 py-2">
+                <textarea asp-for="movie.Description" class="form-control" placeholder="Enter description"></textarea>
+            </div>
+            <div class=" col-12 col-md-6 py-2">
+                <button type="submit" class="form-control btn btn-warning">Update Movie</button>
+            </div>
+            <div class=" col-12 col-md-6 py-2">
+                <a asp-action="Index" asp-controller="Movie" class="form-control btn btn-secondary">Back</a>
+            </div>
+            <div class="col-12 col-md-6 py-2" asp-validation-summary="All"></div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+	}
+
+<script>
+    $(() => {
+        $(file1).change(function (event) {
+            //event.target.files[0].size
+            var parts = event.target.files[0].name.split('.')
+            if (parts[1].toLowerCase() === "jpg" || "jpeg") {
+                var reader = new FileReader()
+                reader.readAsDataURL(event.target.files[0])
+                reader.onloadend = x => {
+                    $(imgpreview).attr('src', x.target.result)
+                }
+            } else {
+                alert('The File Format is Invalid')
+            }
+        })
+    })
+</script>

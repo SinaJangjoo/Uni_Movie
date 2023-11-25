@@ -1,31 +1,49 @@
-﻿@{
-    ViewData["Title"] = "Create";
-}
+﻿@model Uni_Movie.ViewModels.MovieCreateViewModel
 
-<div class="container">
-    <div class="row">
-        <form>
-            <div class="col-md col-6 py-2">
-                <input type="text" class="form-control" placeholder="Enter Title" />
-            </div>
-            <div class="col-md col-6 py-2">
-                <input type="text" class="form-control" placeholder="Enter Director" />
-            </div>
-            <div class="col-md col-6 py-2">
-                <input type="date" class="form-control" placeholder="Enter Year" />
-            </div>
-            <div class="col-md col-6 py-2">
-                <input type="text" class="form-control" placeholder="Enter Genre" />
-            </div>
-            <div class="col-md col-6 py-2">
-                <input type="range" class="form-control" placeholder="Enter IMDB" />
-            </div>
-            <div class="col-md col-6 py-2">
-                <input type="file" class="form-control" placeholder="Enter Image" />
-            </div>
-            <div class="col-md col-6 py-2">
-                <textarea type="text" class="form-control" placeholder="...Description"></textarea>
-            </div>
-        </form>
-    </div>
+<div class="container py-5">
+
+	<form method="post" enctype="multipart/form-data">
+		<div class="row">
+			<div class="col-12 col-md-6 py-2">
+				<input asp-for="movie.Title" type="text" class="form-control" placeholder="Enter title">
+				<span asp-validation-for="movie.Title"></span>
+			</div>
+			<div class="col-12 col-md-6 py-2">
+				<input asp-for="movie.Director" type="text" class="form-control" placeholder="Enter director">
+				<span asp-validation-for="movie.Director"></span>
+			</div>
+			<div class=" col-12 col-md-6 py-2">
+				<input asp-for="movie.Year" type="datetime-local" min="1890-01-01T00:00" max="2100-12-31T23:59" value="@DateTime.Now" class="form-control" placeholder="Enter year">
+			</div>
+			<div class=" col-12 col-md-6 py-2">
+				<select class="text-bg-danger" asp-for="movie.genreId" asp-items="@Model.genreList">
+					<option disabled selected>---- Select Genre ----</option>
+				</select>
+				<span asp-validation-for="movie.genreId"></span>
+			</div>
+			<div class=" col-12 col-md-6 py-2">
+				<input asp-for="movie.Rate" type="text" class="form-control" placeholder="Enter IMDB">
+				<span asp-validation-for="movie.Rate"></span>
+			</div>
+			<div class=" col-12 col-md-6 py-2">
+				<input asp-for="movie.MovieImage" type="file" class="form-control" placeholder="Enter image">
+				<span asp-validation-for="movie.MovieImage"></span>
+			</div>
+			<div class="col-12 col-md-6 py-2">
+				<textarea asp-for="movie.Description" class="form-control" placeholder="Enter description"></textarea>
+			</div>
+			<div class=" col-12 col-md-6 py-2">
+				<button type="submit" class="form-control btn btn-success">Add Movie</button>
+			</div>
+			<div class="col-12 col-md-6 py-2" asp-validation-summary="All"></div>
+		</div>
+	</form>
+	<div class="d-flex row justify-content-center py-3">
+		<a asp-action="Index" asp-controller="Movie" class="col-12 col-md-6 btn btn-secondary text-white">Back</a>
+	</div>
 </div>
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	}

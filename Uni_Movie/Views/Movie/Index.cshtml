@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Movie>
+<div class="d-flex row justify-content-center py-3">
+    <a asp-action="Create" asp-controller="Movie" class="col-12 col-md-6 btn btn-success text-black">Create a new Movie</a>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Director
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Rate
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Edit/Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.genre.Title</td>
+                <td>@item.Director</td>
+                <td>@item.Year</td>
+                <td>@item.Rate</td>
+                <td><img src=@($"data:image/jpeg;base64,{Convert.ToBase64String(item.MovieImage)}") style="max-width:120px; max-height:100px" alt=""></td>
+                <td>
+                    <a asp-controller="Movie" asp-action="Update" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a onclick="DeleteAlert(`/Movie/Delete/${@item.Id}`)" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+
+    <script>
+        function DeleteAlert(url) {
+
+            Swal.fire({
+                title: "?Are you sure",
+                text: "!You won't be able to revert the movie",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "!Yes, delete it"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (value) {
+                            if (value.success) {
+                                Swal.fire({
+                                    title: "!Deleted",
+                                    text: "!The movie has been deleted",
+                                    icon: "success"
+                                });
+                                setTimeout(function () {
+                                    location.reload()
+                                }, 1500);
+                            }
+                        }
+                    })
+
+                }
+            });
+        }
+    </script>
+
+	}
