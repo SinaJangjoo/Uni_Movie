@@ -8,7 +8,7 @@ namespace Uni_Movie.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Search Box can not be empty")]
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Year { get; set; }

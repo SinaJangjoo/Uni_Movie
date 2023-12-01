@@ -1,0 +1,157 @@
+﻿@model Uni_Movie.ViewModels.RegisterViewModel
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <!-- META ============================================= -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="index-2.html" />
+    <!-- OG -->
+    <meta name="robots" content="index, follow">
+
+    <meta name="keywords" content="Web Design, Education, Institute, Study" />
+    <meta name="author" content="ThemeTrades" />
+    <meta name="description"
+          content="EduChamp is a Fully Creative Mobile Responsive HTML Template. It is designed specifically for University, College, School, Training centre or other educational institute." />
+
+    <meta property="og:url" content="index-2.html" />
+    <meta property="og:site_name" content="EduChamp : Education HTML Template" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_us" />
+    <meta property="og:title" content="EduChamp : Education HTML Template" />
+    <meta property="og:description"
+          content="EduChamp is a Fully Creative Mobile Responsive HTML Template. It is designed specifically for University, College, School, Training center or other educational institute." />
+    <meta property="og:image" content="preview.png" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="index-2.html">
+    <meta name="twitter:creator" content="@@themetrades">
+    <meta name="twitter:title" content="EduChamp : Education HTML Template">
+    <meta name="twitter:description"
+          content="EduChamp is a Fully Creative Mobile Responsive HTML Template. It is designed specifically for University, College, School, Training centre or other educational institute.">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href="/Layout/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="/Layout/images/favicon.png" />
+
+    <!-- PAGE TITLE HERE ============================================= -->
+    <title>اجوکمپ :قالب آموزشی</title>
+
+    <!-- MOBILE SPECIFIC ============================================= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+    <script src="/Layout/js/html5shiv.min.js"></script>
+    <script src="/Layout/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- All PLUGINS CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="/Layout/css/assets.css">
+
+    <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href="/Layout/css/typography.css">
+
+    <!-- SHORTCODES ============================================= -->
+    <link rel="stylesheet" type="text/css" href="/Layout/css/shortcodes/shortcodes.css">
+
+    <!-- STYLESHEETS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="/Layout/css/style.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="/Layout/css/color/color-1.css">
+
+    <!-- External JavaScripts -->
+    <script src="/Layout/js/jquery.min.js"></script>
+    <script src="/Layout/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="/Layout/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Layout/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="/Layout/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="/Layout/vendors/magnific-popup/magnific-popup.js"></script>
+    <script src="/Layout/vendors/counter/waypoints-min.js"></script>
+    <script src="/Layout/vendors/counter/counterup.min.js"></script>
+    <script src="/Layout/vendors/imagesloaded/imagesloaded.js"></script>
+    <script src="/Layout/vendors/masonry/masonry.js"></script>
+    <script src="/Layout/vendors/masonry/filter.js"></script>
+    <script src="/Layout/vendors/owl-carousel/owl.carousel.js"></script>
+    <script src="/Layout/js/functions.js"></script>
+    <script src="/Layout/js/contact.js"></script>
+    <script src='/Layout/vendors/switcher/switcher.js'></script>
+
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-icon-bx"></div>
+        <div class="account-form">
+            <div class="account-head" style="background-image:url(/Layout/images/background/bg2.jpg);">
+                <a asp-controller="Home" asp-action="Index"><img src="/Layout/images/logo-white-2.png" alt=""></a>
+            </div>
+            <div class="account-form-inner">
+                <div class="account-container">
+                    <div class="heading-bx left">
+                        <h2 class="title-head">Register Right Now</h2>
+                        <p> Login  <a asp-action="Login" asp-controller="Account"> Click here </a></p>
+                    </div>
+                    <form method="post" class="contact-bx">
+                        <div class="row placeani">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Firstname</label>
+                                        <input asp-for="Firstname" type="text" class="form-control">
+                                        <span class="text-danger" asp-validation-for="Firstname"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Lastname</label>
+                                        <input asp-for="Lastname" type="text" class="form-control">
+                                        <span class="text-danger" asp-validation-for="Lastname"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Email</label>
+                                        <input asp-for="EmailAddress" type="email" class="form-control">
+                                        <span class="text-danger" asp-validation-for="EmailAddress"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Password</label>
+                                        <input asp-for="Password" type="password" class="form-control">
+                                        <span class="text-danger" asp-validation-for="Password"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 m-b30">
+                                <button name="submit" type="submit" value="Submit" class="btn button-md">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_ValidationScriptsPartial" />
+</body>
+
+
+</html>
+
+
+

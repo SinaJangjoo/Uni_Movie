@@ -1,4 +1,5 @@
-﻿
+﻿@inject UserManager<ApplicationUser> _userManager
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +69,7 @@
     <link rel="stylesheet" type="text/css" href="/Layout/vendors/revolution/css/navigation.css">
     <link href="~/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <!-- REVOLUTION SLIDER END -->
     <!-- External JavaScripts -->
     <script src="/Layout/js/jquery.min.js"></script>
@@ -87,6 +89,7 @@
     <script src='/Layout/vendors/switcher/switcher.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body id="bg">
@@ -114,9 +117,12 @@
                         <div class="secondary-menu">
                             <div class="secondary-inner text-white">
                                 <ul>
-                                    <li><a href="javascript:;" class="btn-link text-white"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="javascript:;" class="btn-link text-white"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="javascript:;" class="btn-link text-white"><i class="fa fa-linkedin"></i></a></li>
+                                    @if (true)
+                                    {
+                                        <li><a asp-action="Login" asp-controller="Account" class="btn-link text-white px-1" style="text-decoration:none">Sign In</a>/</li>
+                                        <li><a asp-action="Register" asp-controller="Account" class="btn-link text-white px-1" style="text-decoration:none">Sign Up</a></li>
+                                    }
+
                                     <!-- Search Button ==== -->
                                     <li class="search-btn">
                                         <button id="quik-search-btn" type="button" class="btn-link text-white">
@@ -253,7 +259,7 @@
         </header>
         <!-- Header Top END ==== -->
         @RenderBody()
-        @await RenderSectionAsync("Scripts",required:false)
+        @await RenderSectionAsync("Scripts", required: false)
         <!-- Footer ==== -->
         <footer>
             <div class="footer-bottom">

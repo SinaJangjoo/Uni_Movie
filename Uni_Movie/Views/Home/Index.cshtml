@@ -1,116 +1,142 @@
-﻿@model List<Uni_Movie.Models.Movie>
+﻿@model Uni_Movie.ViewModels.HomeViewModel
+
 
 
 <html>
-    <head></head>
-    <body>
+<head>
+</head>
+<body>
 
-	<!-- Content -->
-	<div class="page-content ">
-		<!-- Main Slider -->
-		<div class="section-area section-sp1 ovpr-light bg-fix online-cours"
-			 style="background-image:url(Layout/images/background/bg11.jpg); height:100vh">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center text-white">
-						<h2>دوره‌های آنلاین آموزشی</h2>
-						<h5>آینده را با یادگرفتن مهارت‌ به کام خود کنید</h5>
-						<form class="cours-search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="امروز می‌خواهید چه چیزی بدانید؟">
-								<div class="input-group-append">
-									<button class="btn" type="submit">جستجو</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="mw800 m-auto">
-					<div class="row">
-						<div class="col-md-4 col-sm-6">
-							<div class="cours-search-bx m-b30">
-								<div class="icon-box">
-									<h3><i class="ti-user"></i><span class="counter">5</span>میلیون</h3>
-								</div>
-								<span class="cours-search-text">پنج میلیون دانشجو</span>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="cours-search-bx m-b30">
-								<div class="icon-box">
-									<h3><i class="ti-book"></i><span class="counter">30</span>هزار</h3>
-								</div>
-								<span class="cours-search-text">30,000 دوره</span>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-12">
-							<div class="cours-search-bx m-b30">
-								<div class="icon-box">
-									<h3><i class="ti-layout-list-post"></i><span class="counter">20</span>هزار</h3>
-								</div>
-								<span class="cours-search-text">هر چیزی را آنلاین بیاموزید</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Main Slider -->
-		<div class="content-block">
-			<!-- inner page banner END -->
-			<div class="content-block">
-				<!-- About Us -->
-				<div class="section-area section-sp1">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12 col-md-6 col-sm-12">
-								<div class="row">
-									@foreach (var items in Model)
-									{
-										<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-											<div class="cours-bx" style="background-color:darkgray">
-												<div class="action-box">
-													<a href="#">
-														<img src=@($"data:image/jpeg;base64,{Convert.ToBase64String(items.MovieImage)}") alt="">
-													</a>
-												</div>
-												<div class="info-bx text-center">
-													<h5><a style="text-decoration:none" class="text-black" href="#">@items.Title</a></h5>
-													<span class="text-secondary">@items.Director</span>
-												</div>
-												<div class="cours-more-info">
-													<div class="review text-center">
-														<span style="font-size:16px"> IMDB: @items.Rate</span>
-													</div>
-													<div class="review text-center">
-														<span style="font-size:16px" class="text-black ">Genre: @items.genre.Title</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									}
+    <!-- Content -->
+    <div class="page-content ">
+        <!-- Main Slider -->
+        <div class="section-area section-sp1 ovpr-light bg-fix online-cours"
+             style="background-image:url(/Layout/images/background/bg11.jpg); height:100vh">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center text-white">
+                        <h2>دوره‌های آنلاین آموزشی</h2>
+                        <h5>آینده را با یادگرفتن مهارت‌ به کام خود کنید</h5>
+                        <form class="cours-search" asp-action="SearchMovie" asp-controller="Home">
+                            <div class="input-group">
+                                <input asp-for="movie.Title" type="text" class="form-control" placeholder="...Search Movie">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="submit">جستجو</button>
+                                </div>
+                            </div>
+                            <span class="text-danger mt-5" asp-validation-for="movie.Title"></span>
+                        </form>
+                    </div>
+                </div>
+                <div class="mw800 m-auto">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="cours-search-bx m-b30">
+                                <div class="icon-box">
+                                    <h3><i class="ti-user"></i><span class="counter">5</span>میلیون</h3>
+                                </div>
+                                <span class="cours-search-text">پنج میلیون دانشجو</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="cours-search-bx m-b30">
+                                <div class="icon-box">
+                                    <h3><i class="ti-book"></i><span class="counter">30</span>هزار</h3>
+                                </div>
+                                <span class="cours-search-text">30,000 دوره</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="cours-search-bx m-b30">
+                                <div class="icon-box">
+                                    <h3><i class="ti-layout-list-post"></i><span class="counter">20</span>هزار</h3>
+                                </div>
+                                <span class="cours-search-text">هر چیزی را آنلاین بیاموزید</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Slider -->
+        <div class="content-block">
+            <!-- inner page banner END -->
+            <div class="content-block">
+                <!-- About Us -->
+                <div class="section-area section-sp1">
+                    <div class="container">
+                        <div class="row">
+                            <form asp-action="Filter" asp-controller="Home">
+                            <div class="row d-flex justify-content-center mb-5">
+                                <div class="col-12 ">
+                                    <select name="genreId" class="col-6" asp-for="movie.genreId" asp-items="@Model.genreList">
+                                        <option selected disabled>---- Filter By Genre ----</option>
+                                    </select>
+                                    <span asp-validation-for="movie.genreId"></span>
+                                    <button class=" btn btn-outline-primary">Filter</button>
+                                </div>
+                            </div>
+                            </form>
+                            <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="row">
+                                    @if (TempData["notFound"] != null)
+                                    {
+                                        <div class="col-12 text-center">
+                                            <p class="text-white">@TempData["notFound"]</p>
+                                        </div>
+                                    }
+                                    @foreach (var items in Model.movieList)
+                                    {
+                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                            <div class="cours-bx" style="background-color:darkgray">
+                                                <div class="action-box">
+                                                    <a href="#">
+                                                        <img src=@($"data:image/jpeg;base64,{Convert.ToBase64String(items.MovieImage)}") alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="info-bx text-center">
+                                                    <h5><a style="text-decoration:none" class="text-black" href="#">@items.Title</a></h5>
+                                                    <span class="text-secondary">@items.Director</span>
+                                                </div>
+                                                <div class="cours-more-info">
+                                                    <div class="review text-center">
+                                                        <span style="font-size:16px"> IMDB: @items.Rate</span>
+                                                    </div>
+                                                    <div class="review text-center">
+                                                        <span style="font-size:16px" class="text-black ">Genre: @items.genre.Title</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
 
-									<div class="col-lg-12 m-b20">
-										<div class="pagination-bx rounded-sm gray clearfix">
-											<ul class="pagination justify-content-center">
-												<li class="previous"><a href="#"><i class="ti-arrow-right"></i> قبلی</a></li>
-												<li class="active"><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li class="next"><a href="#">بعدی<i class="ti-arrow-left"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- contact area END -->
-	</div>
-	<!-- Content END-->
+                                    <div class="col-lg-12 m-b20">
+                                        <div class="pagination-bx rounded-sm gray clearfix">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="previous"><a href="#"><i class="ti-arrow-right"></i> قبلی</a></li>
+                                                <li class="active"><a href="#">1</a></li>
+                                                <li><a href="#">2</a></li>
+                                                <li><a href="#">3</a></li>
+                                                <li class="next"><a href="#">بعدی<i class="ti-arrow-left"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact area END -->
+    </div>
+    <!-- Content END-->
 
-    </body>
+</body>
 </html>
+
+@section Scripts{
+    @{
+        <partial name="_Notifications" />
+    }
+}
