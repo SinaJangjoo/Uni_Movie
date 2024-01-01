@@ -103,5 +103,24 @@ namespace Uni_Movie.Controllers
 				return View(model);
 			}
 		}
+
+		public async Task<IActionResult> LogOut()
+		{
+			await _signInManager.SignOutAsync();
+			return RedirectToAction("Index","Home");
+		}
+
+		public async Task<IActionResult> CheckEmail(string emailAddress)
+		{
+			ApplicationUser user=await _userManager.FindByNameAsync(emailAddress);
+			if (user == null)
+			{
+				return Json(true);
+			}
+			else
+			{
+			return Json(false);
+			}
+		}
 	}
 }

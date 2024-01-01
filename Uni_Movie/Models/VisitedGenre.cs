@@ -8,10 +8,16 @@ namespace Uni_Movie.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("genreId")]
+
+
         public int genreId { get; set; }
+        [ForeignKey("genreId")]
         public Genre genre { get; set; }
-        public DateTime VisitDateTime { get; set; }
+
+
+        public DateTime VisitDateTime { get; set; }= DateTime.Now;
+
+
         public string userId{ get; set; }
         [ForeignKey("userId")]
         public ApplicationUser applicationUser { get; set; }

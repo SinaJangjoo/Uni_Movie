@@ -10,6 +10,7 @@ namespace Uni_Movie.ViewModels
 		[Required]
 		public string Lastname { get; set; }
 		[Required]
+		[Remote("CheckEmail", "Account", ErrorMessage ="! This Email Address already exists")]
 		public string EmailAddress { get; set; }
 		[Required]
 		public string Password { get; set; }

@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Uni_Movie.Data;
 using Uni_Movie.Models;
+using Uni_Movie.Utilities;
 using Uni_Movie.ViewModels;
 
 namespace Uni_Movie.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class GenreController : Controller
     {
         private readonly ApplicationDbContext _dbContext;

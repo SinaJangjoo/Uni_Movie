@@ -1,142 +1,203 @@
 ﻿@model Uni_Movie.ViewModels.HomeViewModel
-
-
-
 <html>
 <head>
+	<title></title>
 </head>
 <body>
+	<div class="page-content ">
+		<!-- Main Slider -->
+		<div class="section-area ovbl-light section-sp1 bg-fix online-cours"
+			 style="background-image: url(/Layout/images/background/bg11.jpg);height:100vh">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center text-white">
+						<h2>Global Movie</h2>
+						<h5>Cinema experience at home</h5>
+						<form class="cours-search" method="post" asp-controller="Home" asp-action="SearchMovie">
+							<div asp-validation-summary="ModelOnly"></div>
+							<div class="input-group">
+								<input type="text" asp-for="movie.Title" class="form-control" placeholder="Search movie...">
+								<div class="input-group-append">
+									<button class="btn btn-outline-primary" type="submit">Search</button>
+								</div>
+							</div>
+							<span class="text-bg-danger mt-5" asp-validation-for="movie.Title"></span>
+						</form>
+					</div>
+				</div>
+				<div class="mw800 m-auto">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="cours-search-bx m-b30">
+								<div class="icon-box">
+									<h4><i class="ti-user"></i><span class="counter">5</span>Million</h4>
+								</div>
+								<span class="cours-search-text">Five million subscribers</span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="cours-search-bx m-b30">
+								<div class="icon-box">
+									<h5><i class="ti-book"></i><span class="counter">30</span>Thousand</h5>
+								</div>
+								<span class="cours-search-text">30,000 Movies</span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-12">
+							<div class="cours-search-bx m-b30">
+								<div class="icon-box">
+									<h5><i class="ti-layout-list-post"></i><span class="counter">20</span>Genres</h5>
+								</div>
+								<span class="cours-search-text"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Main Slider -->
+		<div class="content-block">
+			<!-- Popular Courses -->
+			<!-- Popular Courses END -->
+			<!-- Breadcrumb row -->
+			<!-- Breadcrumb row END -->
+			<!-- inner page banner END -->
+			<div class="content-block">
+				<!-- About Us -->
+				<div class="section-area section-sp1">
+					<div class="container">
+						<form method="post" asp-controller="Home" asp-action="Filter">
+							<div class="row mb-3 py-3">
+								<div class="col-12">
+									<div asp-validation-summary="All" class="text-danger"></div>
+									<select name="genreId" class="col-6" asp-for="movie.genreId" asp-items="@Model.genreList" >
+										<option selected disabled>---- Filter by genre ----</option>
+										
+									</select>
+									<button class="btn btn-outline-primary">Filter</button>
+									<span asp-validation-for="movie.genreId"></span>
+								</div>
+							</div>
+						</form>
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									@if (TempData["notFound"] != null)
+									{
+										<div class="col-12 text-center">
+											@TempData["notFound"]
+										</div>
+									}
+									@foreach (var item in Model.movieList)
+									{
 
-    <!-- Content -->
-    <div class="page-content ">
-        <!-- Main Slider -->
-        <div class="section-area section-sp1 ovpr-light bg-fix online-cours"
-             style="background-image:url(/Layout/images/background/bg11.jpg); height:100vh">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center text-white">
-                        <h2>دوره‌های آنلاین آموزشی</h2>
-                        <h5>آینده را با یادگرفتن مهارت‌ به کام خود کنید</h5>
-                        <form class="cours-search" asp-action="SearchMovie" asp-controller="Home">
-                            <div class="input-group">
-                                <input asp-for="movie.Title" type="text" class="form-control" placeholder="...Search Movie">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary" type="submit">جستجو</button>
-                                </div>
-                            </div>
-                            <span class="text-danger mt-5" asp-validation-for="movie.Title"></span>
-                        </form>
-                    </div>
-                </div>
-                <div class="mw800 m-auto">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="cours-search-bx m-b30">
-                                <div class="icon-box">
-                                    <h3><i class="ti-user"></i><span class="counter">5</span>میلیون</h3>
-                                </div>
-                                <span class="cours-search-text">پنج میلیون دانشجو</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="cours-search-bx m-b30">
-                                <div class="icon-box">
-                                    <h3><i class="ti-book"></i><span class="counter">30</span>هزار</h3>
-                                </div>
-                                <span class="cours-search-text">30,000 دوره</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="cours-search-bx m-b30">
-                                <div class="icon-box">
-                                    <h3><i class="ti-layout-list-post"></i><span class="counter">20</span>هزار</h3>
-                                </div>
-                                <span class="cours-search-text">هر چیزی را آنلاین بیاموزید</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Main Slider -->
-        <div class="content-block">
-            <!-- inner page banner END -->
-            <div class="content-block">
-                <!-- About Us -->
-                <div class="section-area section-sp1">
-                    <div class="container">
-                        <div class="row">
-                            <form asp-action="Filter" asp-controller="Home">
-                            <div class="row d-flex justify-content-center mb-5">
-                                <div class="col-12 ">
-                                    <select name="genreId" class="col-6" asp-for="movie.genreId" asp-items="@Model.genreList">
-                                        <option selected disabled>---- Filter By Genre ----</option>
-                                    </select>
-                                    <span asp-validation-for="movie.genreId"></span>
-                                    <button class=" btn btn-outline-primary">Filter</button>
-                                </div>
-                            </div>
-                            </form>
-                            <div class="col-lg-12 col-md-6 col-sm-12">
-                                <div class="row">
-                                    @if (TempData["notFound"] != null)
-                                    {
-                                        <div class="col-12 text-center">
-                                            <p class="text-white">@TempData["notFound"]</p>
-                                        </div>
-                                    }
-                                    @foreach (var items in Model.movieList)
-                                    {
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx" style="background-color:darkgray">
-                                                <div class="action-box">
-                                                    <a href="#">
-                                                        <img src=@($"data:image/jpeg;base64,{Convert.ToBase64String(items.MovieImage)}") alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a style="text-decoration:none" class="text-black" href="#">@items.Title</a></h5>
-                                                    <span class="text-secondary">@items.Director</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review text-center">
-                                                        <span style="font-size:16px"> IMDB: @items.Rate</span>
-                                                    </div>
-                                                    <div class="review text-center">
-                                                        <span style="font-size:16px" class="text-black ">Genre: @items.genre.Title</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
+										<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+											<div class="cours-bx" style="background-color:darkgray">
+												<div class="action-box">
 
-                                    <div class="col-lg-12 m-b20">
-                                        <div class="pagination-bx rounded-sm gray clearfix">
-                                            <ul class="pagination justify-content-center">
-                                                <li class="previous"><a href="#"><i class="ti-arrow-right"></i> قبلی</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li class="next"><a href="#">بعدی<i class="ti-arrow-left"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- contact area END -->
-    </div>
-    <!-- Content END-->
+													<a asp-action="Details" asp-controller="Movie" asp-route-id="@item.Id">
+														<img src="@($"data:image/jpeg;base64,{Convert.ToBase64String(item.MovieImage)}")" alt="">
+													</a>
+
+
+												</div>
+												<div class="info-bx text-center">
+													<h5>
+
+														<a asp-action="Details" asp-controller="Movie" asp-route-id="@item.Id" class="text-black" style="text-decoration:none">@item.Title</a>
+
+
+													</h5>
+													<span class="text-secondary">@item.Director</span>
+												</div>
+												<div class="cours-more-info">
+													<div class="review text-center">
+														<span style="font-size:16px">IMDB: @item.Rate</span>
+
+													</div>
+													<div class="review text-center">
+														<span class="text-black" style="font-size:16px">genre: @item.genre.Title </span>
+													</div>
+												</div>
+											</div>
+										</div>
+									}
+									@if (User.Identity.IsAuthenticated)
+									{
+										try
+										{
+										int recommendCount =(int) ViewData["recommendedCount"];
+										@if (recommendCount>0){
+										
+										@await Component.InvokeAsync("RecommendedMovies")
+										}
+
+										}
+										catch (Exception ex)
+										{
+											throw ex;
+										}
+									}
+
+									<div class="col-lg-12 m-b20">
+										<div class="pagination-bx rounded-sm gray clearfix">
+											<ul class="pagination justify-content-center">
+												@{
+													double dev = Convert.ToDouble(ViewData["count"]) / Model.paginationDTO.PageSize;
+													int totalPages = (int)Math.Ceiling(dev);
+												}
+												@if (Model.paginationDTO.PageNumber == 1)
+												{
+													<li class="page-item"><button class="btn" disabled>Previous</button></li>
+												}
+												else
+												{
+													<li class="page-item"><a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pageNumber="@(Model.paginationDTO.PageNumber-1)">Previous</a></li>
+												}
+												@for (int i = 1; i < totalPages + 1; i++)
+												{
+													if (i == Model.paginationDTO.PageNumber)
+													{
+														<li class="page-item"><a class="page-link active" asp-controller="Home" asp-action="Index" asp-route-pageNumber="@i">@i</a></li>
+													}
+													else
+													{
+														<li class="page-item"><a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pageNumber="@i">@i</a></li>
+
+													}
+												}
+												@if (Model.paginationDTO.PageNumber != totalPages)
+												{
+													<li class="page-item"><a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pageNumber="@(Model.paginationDTO.PageNumber+1)">Next</a></li>
+												}
+												else
+												{
+													<li class="page-item"><button class="btn" disabled>Next</button></li>
+												}
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- contact area END -->
+			<!-- Form END -->
+			<!-- Testimonials -->
+			<!-- Testimonials END -->
+			<!-- Testimonials ==== -->
+			<!-- Testimonials END ==== -->
+		</div>
+		<!-- contact area END -->
+	</div>
+	<!-- Content END-->
 
 </body>
 </html>
-
 @section Scripts{
-    @{
-        <partial name="_Notifications" />
-    }
+	@{
+		<partial name="_Notifications" />
+	}
 }

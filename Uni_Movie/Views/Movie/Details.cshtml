@@ -1,0 +1,85 @@
+﻿
+@model Uni_Movie.Models.Movie
+
+
+<!-- External JavaScripts -->
+<script src="/Layout/js/jquery.min.js"></script>
+<script src="/Layout/vendors/bootstrap/js/popper.min.js"></script>
+<script src="/Layout/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Layout/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="/Layout/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+<script src="/Layout/vendors/magnific-popup/magnific-popup.js"></script>
+<script src="/Layout/vendors/counter/waypoints-min.js"></script>
+<script src="/Layout/vendors/counter/counterup.min.js"></script>
+<script src="/Layout/vendors/imagesloaded/imagesloaded.js"></script>
+<script src="/Layout/vendors/masonry/masonry.js"></script>
+<script src="/Layout/vendors/masonry/filter.js"></script>
+<script src="/Layout/vendors/owl-carousel/owl.carousel.js"></script>
+<script src="/Layout/js/functions.js"></script>
+<script src="/Layout/js/contact.js"></script>
+<script src='/Layout/vendors/switcher/switcher.js'></script>
+
+<!-- Breadcrumb row END -->
+<div class="content-block">
+	<div class="section-area section-sp1">
+		<div class="container">
+			<div class="row">
+				<!-- Left part start -->
+				<div class="col-lg-8 col-xl-8">
+					<!-- blog start -->
+					<div class="recent-news blog-lg">
+						<div class="action-box blog-lg">
+							<img src="@($"data:image/jpeg;base64,{Convert.ToBase64String(Model.MovieImage)}")" alt="">
+						</div>
+						<div class="info-bx bg-black">
+							<h5 class="post-title text-warning" style="text-decoration:none"> Description for this Movie / Series </h5>
+							<p class="text-white">
+								@Model.Description
+							</p>
+
+						</div>
+					</div>
+					<!-- blog END -->
+				</div>
+				<!-- Left part END -->
+				<!-- Side bar start -->
+				<div class="col-lg-4 col-xl-4">
+					<aside class="side-bar sticky-top">
+						<ul class="course-features">
+							<li class="border-bottom border-1">
+								<i class="bi bi-camera-reels-fill text-warning"></i> <span class="label">Title</span> <span class="value">
+									@Model.Title
+								</span>
+							</li>
+							<li class="border-bottom border-1">
+								<i class="bi bi-film text-warning"></i> <span class="label">Director</span> <span class="value">
+									@Model.Director
+								</span>
+							</li>
+							<li class="border-bottom border-1">
+								<i class="bi bi-bookmark-fill text-warning"></i> <span class="label">Genre</span> <span class="value">
+									@Model.genre.Title
+								</span>
+							</li>
+							<li class="border-bottom border-1">
+								<i class="bi bi-calendar2-event-fill text-warning"></i> <span class="label">Year</span> <span class="value">@Model.Year.Year</span>
+							</li>
+							<li class="border-bottom border-1">
+								<i class="bi bi-star-half text-warning"></i> <span class="label">IMDB</span> <span class="value">@Model.Rate</span>
+							</li>
+						</ul>
+					</aside>
+				</div>
+				<!-- Side bar END -->
+			</div>
+		</div>
+	</div>
+		</div>
+<!-- Content END-->
+<!-- Footer ==== -->
+<!-- Footer END ==== -->
+<!-- scroll top button -->
+<button class="back-to-top fa fa-chevron-up"></button>
+
+
+
